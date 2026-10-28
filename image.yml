@@ -8,9 +8,12 @@ summary: |-
 upstream:
   url: https://calligra.org/
   version:
-    type: command
-    run: |-
-      curl -sX GET https://ftp.debian.org/debian/dists/bookworm/main/binary-amd64/Packages.gz | gunzip |grep -A 7 -m 1 'Package: calligra' | awk -F ': ' '/Version/{print $2;exit}' | awk -F '+' '{print $1}' |awk -F ':' '{print $2}'
+    type: deb_packages
+    index_url: https://ftp.debian.org/debian/dists/bookworm/main/binary-amd64/Packages.gz
+    package: calligra
+    transform:
+    - regex: ^(?:[0-9]+:)?([^+]*).*$
+      replace: \1
 
 release:
   branch: master
