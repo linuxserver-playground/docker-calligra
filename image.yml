@@ -14,6 +14,9 @@ upstream:
     transform:
     - regex: ^(?:[0-9]+:)?([^+]*).*$
       replace: \1
+  sponsor:
+  - name: Donate to KDE e.V.
+    url: https://kde.org/donate/
 
 release:
   branch: master
